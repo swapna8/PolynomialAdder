@@ -52,7 +52,7 @@ public class Polynomial
                 {
                     exponent = Integer.parseInt(token.substring(token.indexOf("(") + 1, token.lastIndexOf(")")));
                 }
-                catch (Exception e) // if there's no exponent then assume exponent 0 to match sense mathematically
+                catch (Exception e) // if there's no exponent then assume exponent 0 to make sense mathematically
                 {
                     exponent = 0;
                 }
@@ -82,7 +82,7 @@ public class Polynomial
      */
     public Polynomial add(Polynomial secondPoly)
     {
-        Polynomial newPoly = new Polynomial(""); // We're store our new polynomial here
+        Polynomial newPoly = new Polynomial(""); // We'll store our new polynomial here
         boolean foundMatch;
 
         for (int i = 0; i < this.size(); i++) // Loop through all the groups of the first polynomial
