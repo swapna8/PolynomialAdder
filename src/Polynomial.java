@@ -1,9 +1,9 @@
 /*
- * Copyright (C) 2013 - Vladimir Jimenez
+ //* Copyright (C) 2013 - Vladimir Jimenez
  * License: MIT
  */
 
-package main;
+//package main;
 
 import java.util.ArrayList;
 
@@ -135,6 +135,85 @@ public class Polynomial
      *
      * @return The coefficient at the specified index
      */
+   /* public int getCoefficientByIndex(int index)
+    {
+        return elements.getCoefficientByIndex(index);
+    }
+
+    /**
+     * Get the exponent that is stored respective to an index in the LinkedList
+     *
+     * @param index The index of the exponent to retrieve
+     *
+     * @return The exponent at the specified index
+     */
+  /* public int getExponentByIndex(int index)
+    {
+        return elements.getExponentByIndex(index);
+    }
+
+    /**
+     * Get the coefficient corresponding to an exponent
+     *
+     * @param exponent The exponent we want to know to coefficient to
+     *
+     * @return The coefficient respective to the exponent or 0 if it's not found
+     */
+  /*  public int getCoefficient(int exponent)
+    {
+        return elements.getCoefficient(exponent);
+    }*/
+
+    
+    //substraction of two polynomials
+    
+    public Polynomial sub(Polynomial secondPoly)
+    {
+        Polynomial newPoly = new Polynomial(""); // We'll store our new polynomial here
+        boolean foundMatch;
+
+        for (int i = 0; i < this.size(); i++) // Loop through all the groups of the first polynomial
+        {
+            foundMatch = false;
+
+            for (int j = 0; j < secondPoly.size(); j++) // Loop through all the groups of the second polynomial
+            {
+                if (this.getExponentByIndex(i) == secondPoly.getExponentByIndex(j)) // Check if the exponents are equal
+                {
+                    // Add the coefficients
+                    int newCoefficient = this.getCoefficientByIndex(i) - secondPoly.getCoefficientByIndex(j);
+
+                    // Save the new coefficient and exponent in the new polynomial
+                    newPoly.setCoefficient(newCoefficient, this.getExponentByIndex(i));
+
+                    // We found a matching exponent, don't add it
+                    foundMatch = true;
+
+                    // Move to the next group
+                    break;
+                }
+            }
+
+            // If we didn't find a match, then save it to the polynomial
+            if (!foundMatch)
+            {
+                newPoly.setCoefficient(this.getCoefficientByIndex(i), this.getExponentByIndex(i));
+            }
+        }
+
+        // Loop through the second polynomial to see if we've skipped anything
+        for (int k = 0; k < secondPoly.size(); k++)
+        {
+            // If the second polynomial has an exponent that the first polynomial doesn't have
+            if (this.getCoefficient(secondPoly.getExponentByIndex(k)) == 0)
+            {
+                // Save the polynomial
+                newPoly.setCoefficient(secondPoly.getCoefficientByIndex(k), secondPoly.getExponentByIndex(k));
+            }
+        }
+
+        return newPoly;
+    }
     public int getCoefficientByIndex(int index)
     {
         return elements.getCoefficientByIndex(index);
@@ -164,6 +243,9 @@ public class Polynomial
         return elements.getCoefficient(exponent);
     }
 
+    
+    
+    
     /**
      * Multiply two polynomials together
      *
