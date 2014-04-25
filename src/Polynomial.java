@@ -273,6 +273,28 @@ public class Polynomial
         return newPoly;
     }
 
+    //code for devision
+    
+    public Polynomial devision(Polynomial secondPoly)
+    {
+        Polynomial newPoly = new Polynomial(""); // The product will be stored here
+
+        for (int i = 0; i < this.size(); i++) // Loop through the first polynomial
+        {
+            for (int j = 0; j < secondPoly.size(); j++) // Loop through the second polynomial
+            {
+                // Do the math
+                int newCoefficient = this.getCoefficientByIndex(i) / secondPoly.getCoefficientByIndex(j);
+                int newExponent = this.getExponentByIndex(i) - secondPoly.getExponentByIndex(j);
+
+                // Save it
+                newPoly.setCoefficient(newCoefficient, newExponent);
+            }
+        }
+
+        return newPoly;
+    }
+    
     /**
      * Add a pair of coefficient and exponent to the linked list
      *
